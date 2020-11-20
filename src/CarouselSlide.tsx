@@ -1,9 +1,13 @@
 import React from 'react';
 
-const CarouselSlide = () => {
+export interface CarouselSlideProps {
+    imgUrl: string;
+}
+
+const CarouselSlide = (props: CarouselSlideProps) => {
 
     return (<figure>
-                <img />
+                <img src={props.imgUrl} />
                 <figcaption />
             </figure>);
 };
