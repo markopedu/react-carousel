@@ -2,30 +2,32 @@ import React from 'react';
 import CarouselButton from "./CarouselButton";
 
 class Carousel extends React.PureComponent {
-    private readonly cssClassName: string = 'carousel-button';
 
     state = {
         slideIndex: 0
     };
 
-    prevClick(e: React.MouseEvent<HTMLButtonElement>): void {
-
+    prevClick(): void {
+        const prevIndex = this.state.slideIndex - 1;
+        this.setState({ slideIndex: prevIndex });
+        console.log('prev: ', prevIndex);
     }
 
-    nextClick(e: React.MouseEvent<HTMLButtonElement>): void {
-
+    nextClick(): void {
+        const nextIndex = this.state.slideIndex + 1;
+        this.setState({ slideIndex: nextIndex });
     }
 
     render() {
         return (<div>
                   <CarouselButton text='Prev'
-                                  buttonClick={this.prevClick}
-                                  className={this.cssClassName}
+                                  buttonClick={this.prevClick.bind(this)}
+                                  className='carousel-button-prev'
                                   dataAction='prev'  />
 
                   <CarouselButton text='Next'
-                            buttonClick={this.nextClick}
-                            className={this.cssClassName}
+                            buttonClick={this.nextClick.bind(this)}
+                            className='carousel-button-next'
                             dataAction='next'  />
                 </div>);
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import {configure, shallow, ShallowWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Carousel from '../Carousel';
-import CarouselButton from '../CarouselButton';
+import CarouselButton, { CarouselProps } from '../CarouselButton';
 
 configure({ adapter: new Adapter() });
 
@@ -27,6 +27,22 @@ describe('Carousel', () => {
 
     it('renders a CarouselButton labeled Next', () => {
         expect(wrapper.find(CarouselButton).at(1).prop('text')).toBe('Next');
+    });
+
+    it('decrements when Prev is clicked', () => {
+        wrapper.setState({ slideIndex: 1 });
+        const button = wrapper.find('.carousel-button-prev');
+        const props = button.props() as CarouselProps;
+        props.buttonClick();
+        expect(wrapper.state('slideIndex')).toBe(0);
+    });
+
+    it('increments when Next is clicked', () => {
+        wrapper.setState({ slideIndex: 1 });
+        const button = wrapper.find('.carousel-button-next');
+        const props = button.props() as CarouselProps;
+        props.buttonClick();
+        expect(wrapper.state('slideIndex')).toBe(2);
     });
 
 });
