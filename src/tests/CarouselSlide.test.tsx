@@ -9,14 +9,20 @@ describe('CarouselSlide', () => {
     const props: CarouselSlideProps = {
         imgUrl: 'http://example.com/image.png',
         description: 'Fine Image!',
-        attribution: 'John Doe'
+        attribution: 'John Doe',
+        slideOnClick: (e) => console.log('slide clicked!'),
+        cssStyle: {},
+        className: 'carousel-slide'
     };
     let wrapper: ShallowWrapper;
 
     beforeEach(() => {
         wrapper = shallow(<CarouselSlide imgUrl={props.imgUrl}
                                          description={props.description}
-                                         attribution={props.attribution} />);
+                                         attribution={props.attribution}
+                                         slideOnClick={props.slideOnClick}
+                                         cssStyle={props.cssStyle}
+                                         className={props.className} />);
     });
 
     it('renders a figure', () => {
@@ -37,6 +43,12 @@ describe('CarouselSlide', () => {
     it('uses description & attribution as the figcaption', () => {
        expect(wrapper.find('figcaption').text()).toBe(`${props.description} ${props.attribution}`);
        expect(wrapper.find('figcaption strong').text()).toBe(props.description);
+    });
+
+    it('passes other props to the component', () => {
+       expect(wrapper.prop('style')).toBe(props.cssStyle);
+       expect(wrapper.prop('onClick')).toBe(props.slideOnClick);
+       expect(wrapper.prop('className')).toBe(props.className);
     });
 
 });
