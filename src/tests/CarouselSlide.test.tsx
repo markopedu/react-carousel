@@ -17,4 +17,9 @@ describe('CarouselSlide', () => {
         expect(wrapper.type()).toBe('figure');
     });
 
+    it('renders a <img> and a <figcaption> as children', () => {
+       expect(wrapper.childAt(0).type()).toBe('img');
+       expect(wrapper.childAt(1).type()).toBe('figcaption');
+    });
+
 });

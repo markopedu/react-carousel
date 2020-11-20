@@ -1,5 +1,11 @@
 import React from 'react';
 
-const CarouselSlide = () => <figure />;
+const CarouselSlide = () => {
+
+    return (<figure>
+                <img />
+                <figcaption />
+            </figure>);
+};
 
 export default CarouselSlide;
