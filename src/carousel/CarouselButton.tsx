@@ -1,13 +1,13 @@
 import React from 'react';
 
-export interface CarouselProps {
+export interface CarouselButtonProps {
     text: string;
     buttonClick: () => void;
     className: string;
     dataAction: string;
 }
 
-const CarouselButton = (props: CarouselProps) => {
+const CarouselButton = (props: CarouselButtonProps) => {
      return (<button onClick={() => props.buttonClick()}
                      className={props.className}
                      data-action={props.dataAction}>{props.text}</button>)};

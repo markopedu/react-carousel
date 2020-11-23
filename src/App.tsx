@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Carousel from "./Carousel";
+import Carousel from "./carousel/Carousel";
+import {CarouselData} from './carousel/CarouselImage';
 
 function App() {
   return (
     <div className="App">
-        <Carousel />
+        <Carousel slides={CarouselData()} slideIndex={0} />
     </div>
   );
 }

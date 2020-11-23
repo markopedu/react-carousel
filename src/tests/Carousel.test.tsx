@@ -1,16 +1,20 @@
 import React from 'react';
 import {configure, shallow, ShallowWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Carousel from '../Carousel';
-import CarouselButton, { CarouselProps } from '../CarouselButton';
+import Carousel from '../carousel/Carousel';
+import CarouselButton, { CarouselButtonProps } from '../carousel/CarouselButton';
+import {CarouselData, CarouselImage} from '../carousel/CarouselImage';
+import CarouselSlide, {CarouselSlideProps} from "../carousel/CarouselSlide";
 
 configure({ adapter: new Adapter() });
 
 describe('Carousel', () => {
    let wrapper: ShallowWrapper;
 
+   let slides: CarouselImage[] = CarouselData();
+
    beforeEach(() => {
-       wrapper = shallow(<Carousel />);
+       wrapper = shallow(<Carousel slideIndex={0} slides={slides} />);
    });
 
    it('renders a div', () => {
@@ -32,7 +36,7 @@ describe('Carousel', () => {
     it('decrements when Prev is clicked', () => {
         wrapper.setState({ slideIndex: 1 });
         const button = wrapper.find('.carousel-button-prev');
-        const props = button.props() as CarouselProps;
+        const props = button.props() as CarouselButtonProps;
         props.buttonClick();
         expect(wrapper.state('slideIndex')).toBe(0);
     });
@@ -40,9 +44,21 @@ describe('Carousel', () => {
     it('increments when Next is clicked', () => {
         wrapper.setState({ slideIndex: 1 });
         const button = wrapper.find('.carousel-button-next');
-        const props = button.props() as CarouselProps;
+        const props = button.props() as CarouselButtonProps;
         props.buttonClick();
         expect(wrapper.state('slideIndex')).toBe(2);
     });
+
+    it('renders the current slide as a CarouselImage', () => {
+       let slideProps = wrapper.find(CarouselSlide).props() as CarouselSlideProps;
+       expect(slideProps.carouselImage).toBe(slides[0]);
+
+       wrapper.setState({ slideIndex: 1 });
+
+       slideProps = wrapper.find(CarouselSlide).props() as CarouselSlideProps;
+       expect(slideProps.carouselImage).toBe(slides[1]);
+    });
+
+
 
 });

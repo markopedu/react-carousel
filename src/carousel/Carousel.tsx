@@ -1,16 +1,30 @@
 import React from 'react';
-import CarouselButton from "./CarouselButton";
+import CarouselButton from './CarouselButton';
+import {CarouselImage} from "./CarouselImage";
+import CarouselSlide from "./CarouselSlide";
 
-class Carousel extends React.PureComponent {
+export interface CarouselProps {
+    slideIndex: number,
+    slides: CarouselImage[];
+}
 
-    state = {
-        slideIndex: 0
-    };
+class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
+
+
+    constructor(props: CarouselProps) {
+        super(props);
+
+        this.state = {
+            slideIndex: 0,
+            slides: []
+        };
+    }
+
+
 
     prevClick(): void {
         const prevIndex = this.state.slideIndex - 1;
         this.setState({ slideIndex: prevIndex });
-        console.log('prev: ', prevIndex);
     }
 
     nextClick(): void {
@@ -18,8 +32,16 @@ class Carousel extends React.PureComponent {
         this.setState({ slideIndex: nextIndex });
     }
 
+    slideOnClick(): void {
+        console.log('slideOnClick');
+    }
+
     render() {
         return (<div>
+                  <CarouselSlide carouselImage={this.props.slides[this.state.slideIndex]}
+                                 slideOnClick={this.slideOnClick.bind(this)}
+                                 cssStyle={{ 'display': 'flex'}}
+                                 className='carousel-slide' />
                   <CarouselButton text='Prev'
                                   buttonClick={this.prevClick.bind(this)}
                                   className='carousel-button-prev'

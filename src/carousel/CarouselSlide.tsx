@@ -1,9 +1,8 @@
 import React from 'react';
+import {CarouselImage} from "./CarouselImage";
 
 export interface CarouselSlideProps {
-    imgUrl: string;
-    description: string;
-    attribution: string;
+    carouselImage: CarouselImage;
     slideOnClick: (e: React.MouseEvent<HTMLElement>) => void;
     cssStyle: any;
     className: string;
@@ -14,9 +13,9 @@ const CarouselSlide = (props: CarouselSlideProps) => {
     return (<figure onClick={props.slideOnClick}
                     style={props.cssStyle}
                     className={props.className} >
-                <img alt={props.description} src={props.imgUrl} />
+                <img alt={props.carouselImage.description} src={props.carouselImage.imgUrl} />
                 <figcaption>
-                    <strong>{props.description}</strong> {props.attribution}
+                    <strong>{props.carouselImage.description}</strong> {props.carouselImage.attribution}
                 </figcaption>
             </figure>);
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {configure, shallow, ShallowWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import CarouselSlide, {CarouselSlideProps} from '../CarouselSlide';
+import CarouselSlide, {CarouselSlideProps} from '../carousel/CarouselSlide';
 
 configure({ adapter: new Adapter() });
 
