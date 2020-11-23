@@ -2,14 +2,15 @@ import React from 'react';
 import {configure, shallow, ShallowWrapper} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import CarouselSlide, {CarouselSlideProps} from '../carousel/CarouselSlide';
+import {CarouselData, CarouselImage} from '../carousel/CarouselImage';
 
 configure({ adapter: new Adapter() });
 
 describe('CarouselSlide', () => {
+    const carouselImage: CarouselImage = CarouselData()[0];
+
     const props: CarouselSlideProps = {
-        imgUrl: 'http://example.com/image.png',
-        description: 'Fine Image!',
-        attribution: 'John Doe',
+        carouselImage: carouselImage,
         slideOnClick: (e) => console.log('slide clicked!'),
         cssStyle: {},
         className: 'carousel-slide'
@@ -17,9 +18,7 @@ describe('CarouselSlide', () => {
     let wrapper: ShallowWrapper;
 
     beforeEach(() => {
-        wrapper = shallow(<CarouselSlide imgUrl={props.imgUrl}
-                                         description={props.description}
-                                         attribution={props.attribution}
+        wrapper = shallow(<CarouselSlide carouselImage={props.carouselImage}
                                          slideOnClick={props.slideOnClick}
                                          cssStyle={props.cssStyle}
                                          className={props.className} />);
@@ -36,13 +35,13 @@ describe('CarouselSlide', () => {
 
     it('sets img attributes through to the component', () => {
         const img = wrapper.find('img');
-        expect(img.prop('alt')).toBe(props.description);
-        expect(img.prop('src')).toBe(props.imgUrl);
+        expect(img.prop('alt')).toBe(props.carouselImage.description);
+        expect(img.prop('src')).toBe(props.carouselImage.imgUrl);
     });
 
     it('uses description & attribution as the figcaption', () => {
-       expect(wrapper.find('figcaption').text()).toBe(`${props.description} ${props.attribution}`);
-       expect(wrapper.find('figcaption strong').text()).toBe(props.description);
+       expect(wrapper.find('figcaption').text()).toBe(`${props.carouselImage.description} ${props.carouselImage.attribution}`);
+       expect(wrapper.find('figcaption strong').text()).toBe(props.carouselImage.description);
     });
 
     it('passes other props to the component', () => {
