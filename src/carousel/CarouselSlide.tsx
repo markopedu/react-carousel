@@ -13,7 +13,7 @@ const CarouselSlide = (props: CarouselSlideProps) => {
     return (<figure onClick={props.slideOnClick}
                     style={props.cssStyle}
                     className={props.className} >
-                <img alt={props.carouselImage.description} src={props.carouselImage.imgUrl} />
+                <img height="600" width="800" referrerPolicy='no-referrer' loading="lazy" alt={props.carouselImage.description} src={props.carouselImage.imgUrl} />
                 <figcaption>
                     <strong>{props.carouselImage.description}</strong> {props.carouselImage.attribution}
                 </figcaption>

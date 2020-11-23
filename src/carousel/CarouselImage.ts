@@ -10,17 +10,17 @@ export function CarouselData(): CarouselImage[] {
 
     return [
         {
-            imgUrl: 'https://loremflickr.com/g/800/600/nature,sea/all?random=1',
+            imgUrl: 'images/nature1.jpg',
             description: 'Nature Sea 1',
             attribution: 'John Doe'
         },
         {
-            imgUrl: 'https://loremflickr.com/g/800/600/nature,mountais/all?random=1',
+            imgUrl: 'images/nature2.jpg',
             description: 'Nature Mountains 2',
             attribution: 'Matti Doe'
         },
         {
-            imgUrl: 'https://loremflickr.com/g/800/600/nature,forest/all?random=1',
+            imgUrl: 'images/nature3.jpg',
             description: 'Nature Forest 3',
             attribution: 'Kalle Doe'
         }
