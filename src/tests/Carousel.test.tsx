@@ -41,8 +41,24 @@ describe('Carousel', () => {
         expect(wrapper.state('slideIndex')).toBe(0);
     });
 
+    it('try to go out of lower index', () => {
+        wrapper.setState({ slideIndex: 0 });
+        const button = wrapper.find('.carousel-button-prev');
+        const props = button.props() as CarouselButtonProps;
+        props.buttonClick();
+        expect(wrapper.state('slideIndex')).toBe(0);
+    });
+
     it('increments when Next is clicked', () => {
         wrapper.setState({ slideIndex: 1 });
+        const button = wrapper.find('.carousel-button-next');
+        const props = button.props() as CarouselButtonProps;
+        props.buttonClick();
+        expect(wrapper.state('slideIndex')).toBe(2);
+    });
+
+    it('try to go out of upper index', () => {
+        wrapper.setState({ slideIndex: 2 });
         const button = wrapper.find('.carousel-button-next');
         const props = button.props() as CarouselButtonProps;
         props.buttonClick();

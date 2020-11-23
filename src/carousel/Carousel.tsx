@@ -16,17 +16,20 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
 
         this.state = {
             slideIndex: 0,
-            slides: []
+            slides: this.props.slides
         };
     }
 
     prevClick(): void {
-        const prevIndex = this.state.slideIndex - 1;
+        const prevIndex = (this.state.slideIndex > 0) ? this.state.slideIndex - 1 : 0;
         this.setState({ slideIndex: prevIndex });
     }
 
     nextClick(): void {
-        const nextIndex = this.state.slideIndex + 1;
+        const nextIndex = (this.state.slideIndex < (this.state.slides.length-1))
+            ? this.state.slideIndex + 1 :
+              (this.state.slides.length-1);
+
         this.setState({ slideIndex: nextIndex });
     }
 
@@ -36,7 +39,7 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
 
     render() {
         return (<div className='carousel'>
-                  <CarouselSlide carouselImage={this.props.slides[this.state.slideIndex]}
+                  <CarouselSlide carouselImage={this.state.slides[this.state.slideIndex]}
                                  slideOnClick={this.slideOnClick.bind(this)}
                                  cssStyle={{ 'display': 'flex'}}
                                  className='carousel-slide' />
