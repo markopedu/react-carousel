@@ -6,7 +6,12 @@ export interface CarouselImage {
 }
 
 export async function CarouselDataService(): Promise<CarouselImage[]> {
-        return await fetch('https://localhost:5001/images').then(x => x.json());
+        return await fetch('https://localhost:5001/images')
+            .then(x => x.json())
+            .catch(e => {
+                console.log('error: ', e);
+                return CarouselData();
+            });
 }
 
 
