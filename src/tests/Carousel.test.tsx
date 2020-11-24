@@ -46,7 +46,7 @@ describe('Carousel', () => {
         const button = wrapper.find('.carousel-button-prev');
         const props = button.props() as CarouselButtonProps;
         props.buttonClick();
-        expect(wrapper.state('slideIndex')).toBe(0);
+        expect(wrapper.state('slideIndex')).toBe((slides.length-1));
     });
 
     it('increments when Next is clicked', () => {
@@ -62,7 +62,7 @@ describe('Carousel', () => {
         const button = wrapper.find('.carousel-button-next');
         const props = button.props() as CarouselButtonProps;
         props.buttonClick();
-        expect(wrapper.state('slideIndex')).toBe(2);
+        expect(wrapper.state('slideIndex')).toBe(0);
     });
 
     it('renders the current slide as a CarouselImage', () => {

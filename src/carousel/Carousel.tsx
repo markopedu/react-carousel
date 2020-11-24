@@ -21,14 +21,14 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
     }
 
     prevClick(): void {
-        const prevIndex = (this.state.slideIndex > 0) ? this.state.slideIndex - 1 : 0;
+        const prevIndex = (this.state.slideIndex > 0) ? this.state.slideIndex - 1 : (this.state.slides.length-1);
         this.setState({ slideIndex: prevIndex });
     }
 
     nextClick(): void {
         const nextIndex = (this.state.slideIndex < (this.state.slides.length-1))
             ? this.state.slideIndex + 1 :
-              (this.state.slides.length-1);
+              0;
 
         this.setState({ slideIndex: nextIndex });
     }
