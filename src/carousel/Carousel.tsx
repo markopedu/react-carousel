@@ -38,6 +38,11 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
     }
 
     render() {
+
+        if(this.state.slides.length == 0) {
+            return (<div></div>);
+        }
+
         return (<div className='carousel'>
                   <CarouselSlide carouselImage={this.state.slides[this.state.slideIndex]}
                                  slideOnClick={this.slideOnClick.bind(this)}

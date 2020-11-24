@@ -5,6 +5,10 @@ export interface CarouselImage {
     attribution: string;
 }
 
+export async function CarouselDataService(): Promise<CarouselImage[]> {
+        return await fetch('https://localhost:5001/images').then(x => x.json());
+}
+
 
 export function CarouselData(): CarouselImage[] {
 

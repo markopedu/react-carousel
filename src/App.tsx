@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Carousel from "./carousel/Carousel";
-import {CarouselData} from './carousel/CarouselImage';
+import {CarouselData, CarouselDataService, CarouselImage} from './carousel/CarouselImage';
 
 function App() {
+   const [ slides, setSlides ] = useState<CarouselImage[]>([]);
+
+   useEffect(() => {
+
+       if(slides.length === 0) {
+            CarouselDataService().then(x => {
+                setSlides(x);
+            });
+       }
+
+   }, [ slides]);
+
   return (
     <div className="App">
-        <Carousel slides={CarouselData()} slideIndex={0} />
+        {slides.length > 0  && <Carousel slides={slides} slideIndex={0} />}
     </div>
   );
 }
