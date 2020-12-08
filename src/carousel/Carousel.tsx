@@ -39,7 +39,7 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
 
     render() {
 
-        if(this.state.slides.length == 0) {
+        if(this.state.slides.length === 0) {
             return (<div></div>);
         }
 
