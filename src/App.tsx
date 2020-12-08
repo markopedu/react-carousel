@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Carousel from "./carousel/Carousel";
-import {CarouselData, CarouselDataService, CarouselImage} from './carousel/CarouselImage';
+import Carousel from './carousel/Carousel';
+import {CarouselDataService, CarouselImage} from './carousel/CarouselImage';
 
-function App() {
+function App(): JSX.Element {
    const [ slides, setSlides ] = useState<CarouselImage[]>([]);
 
    useEffect(() => {

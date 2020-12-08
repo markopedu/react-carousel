@@ -1,7 +1,7 @@
 import React from 'react';
 import CarouselButton from './CarouselButton';
-import {CarouselImage} from "./CarouselImage";
-import CarouselSlide from "./CarouselSlide";
+import {CarouselImage} from './CarouselImage';
+import CarouselSlide from './CarouselSlide';
 import './Carousel.css';
 
 export interface CarouselProps {
