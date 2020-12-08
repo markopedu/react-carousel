@@ -1,13 +1,26 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import CarouselButton from './CarouselButton';
 import {CarouselImage} from './CarouselImage';
 import CarouselSlide from './CarouselSlide';
-import './Carousel.css';
+import styled from 'styled-components';
 
 export interface CarouselProps {
     slideIndex: number,
     slides: CarouselImage[];
 }
+
+const CarouselDiv = styled.div` 
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin: 0 auto;`;
+
+const CarouselDivButtons = styled.div`
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;`;
 
 class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
 
@@ -37,18 +50,18 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
         console.log('slideOnClick');
     }
 
-    render() {
+    render(): ReactNode {
 
         if(this.state.slides.length === 0) {
             return (<div></div>);
         }
 
-        return (<div className='carousel'>
+        return (<CarouselDiv>
                   <CarouselSlide carouselImage={this.state.slides[this.state.slideIndex]}
                                  slideOnClick={this.slideOnClick.bind(this)}
                                  cssStyle={{ 'display': 'flex'}}
                                  className='carousel-slide' />
-                  <div className='carousel__carouselButtons'>
+                  <CarouselDivButtons>
                     <CarouselButton text='Prev'
                                   buttonClick={this.prevClick.bind(this)}
                                   className='carousel-button-prev'
@@ -58,8 +71,8 @@ class Carousel extends React.PureComponent<CarouselProps, CarouselProps>{
                             buttonClick={this.nextClick.bind(this)}
                             className='carousel-button-next'
                             dataAction='next'  />
-                  </div>
-        </div>);
+                  </CarouselDivButtons>
+        </CarouselDiv>);
     }
 }
 
